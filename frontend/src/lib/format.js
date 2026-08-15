@@ -16,7 +16,7 @@ export function formatCurrency(value) {
 
     return new Intl.NumberFormat(undefined, {
         style: "currency",
-        currency: "USD",
+        currency: "INR",
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
     }).format(num);

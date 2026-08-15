@@ -9,9 +9,11 @@ export const API_ROUTES = {
     },
     DASHBOARD: {
         ROOT: "/dashboard",
+        CHARTS: "/dashboard/charts",
     },
     BUDGETS: {
         ROOT: "/budgets",
+        MULTIPLE: "/budgets/multiple",
         CURRENT_MONTH: "/budgets/current-month",
         CATEGORIES: "/budgets/categories",
     },

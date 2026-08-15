@@ -4,7 +4,6 @@ import {
     Wallet,
 } from "lucide-react";
 
-import useAuth from "../hooks/useAuth";
 import useDashboard from "../hooks/useDashboard";
 
 import PageHeader from "../components/ui/PageHeader";
@@ -15,13 +14,13 @@ import Card from "../components/ui/Card";
 import SummaryCard from "../components/dashboard/SummaryCard";
 import BudgetOverview from "../components/dashboard/BudgetOverview";
 import RecentTransactions from "../components/dashboard/RecentTransactions";
+import DashboardCharts from "../components/dashboard/DashboardCharts";
 
 function Dashboard() {
-    const { user } = useAuth();
-
     const {
         dashboardQuery,
         budgetQuery,
+        chartsQuery,
         isLoading,
         isError,
         error,
@@ -124,6 +123,8 @@ function Dashboard() {
                     budgets={budgets}
                     monthExpenses={monthExpenses}
                 />
+
+                <DashboardCharts chartsQuery={chartsQuery} />
             </div>
         </FadeIn>
     );

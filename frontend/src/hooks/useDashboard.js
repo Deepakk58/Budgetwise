@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getDashboard } from "../api/dashboardApi";
+import { getDashboard, getChartData } from "../api/dashboardApi";
 import {
     getBudgets,
     getCurrentMonthBudgetData,
@@ -30,15 +30,25 @@ function useDashboard() {
         },
     });
 
+    const chartsQuery = useQuery({
+        queryKey: ["dashboard", "charts"],
+        queryFn: async () => {
+            const response = await getChartData();
+            return response.data.data;
+        },
+    });
+
     return {
         dashboardQuery,
         budgetQuery,
+        chartsQuery,
         isLoading: dashboardQuery.isLoading || budgetQuery.isLoading,
         isError: dashboardQuery.isError || budgetQuery.isError,
         error: dashboardQuery.error || budgetQuery.error,
         refetch: () => {
             dashboardQuery.refetch();
             budgetQuery.refetch();
+            chartsQuery.refetch();
         },
     };
 }
