@@ -6,3 +6,6 @@ export const getBudgets = () =>
 
 export const getCurrentMonthBudgetData = () =>
     api.get(API_ROUTES.BUDGETS.CURRENT_MONTH);
+
+export const getCategories = () =>
+    api.get(API_ROUTES.BUDGETS.CATEGORIES);

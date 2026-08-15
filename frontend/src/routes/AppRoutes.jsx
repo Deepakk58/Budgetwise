@@ -5,6 +5,8 @@ import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
+import Expenses from "../pages/Expenses";
+import Income from "../pages/Income";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -23,6 +25,28 @@ function AppRoutes() {
                     <ProtectedRoute>
                         <MainLayout>
                             <Dashboard />
+                        </MainLayout>
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/expenses"
+                element={
+                    <ProtectedRoute>
+                        <MainLayout>
+                            <Expenses />
+                        </MainLayout>
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/income"
+                element={
+                    <ProtectedRoute>
+                        <MainLayout>
+                            <Income />
                         </MainLayout>
                     </ProtectedRoute>
                 }

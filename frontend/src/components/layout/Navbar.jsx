@@ -19,6 +19,12 @@ function Navbar() {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
 
+    const navLinks = [
+        { to: "/home", label: "Dashboard" },
+        { to: "/expenses", label: "Expenses" },
+        { to: "/income", label: "Income" },
+    ];
+
     const navLink = ({ isActive }) =>
         cn(
             `
@@ -150,6 +156,7 @@ return (
                 {/* Navigation */}
                 <div
                     className="
+                        flex
                         items-center
                         gap-2
                     "
@@ -171,69 +178,122 @@ return (
                             </NavLink>
                         </>
                     ) : (
-                        <button
-                            onClick={() => setDrawerOpen(true)}
-                            className="
-                                ml-3
-
-                                flex
-                                items-center
-                                gap-3
-
-                                cursor-pointer
-
-                                rounded-xl
-
-                                border
-                                border-zinc-200
-
-                                bg-white
-
-                                px-3
-                                py-2
-
-                                transition-all
-
-                                hover:border-zinc-300
-                                hover:shadow-sm
-
-                                dark:border-zinc-800
-                                dark:bg-zinc-900
-                                dark:hover:border-zinc-700
-                            "
-                        >
+                        <>
                             <div
                                 className="
-                                    flex
-                                    h-8
-                                    w-8
+                                    hidden
+                                    items-center
+                                    gap-1
 
+                                    md:flex
+                                "
+                            >
+                                {navLinks.map((link) => (
+                                    <NavLink
+                                        key={link.to}
+                                        to={link.to}
+                                        className={navLink}
+                                    >
+                                        {link.label}
+                                    </NavLink>
+                                ))}
+                            </div>
+
+                            <button
+                                type="button"
+                                onClick={() => setMobileOpen((open) => !open)}
+                                className="
+                                    flex
+                                    h-10
+                                    w-10
                                     items-center
                                     justify-center
 
-                                    rounded-full
+                                    rounded-xl
 
-                                    bg-blue-600
+                                    text-zinc-600
 
-                                    text-sm
-                                    font-semibold
-                                    text-white
+                                    transition-all
+
+                                    hover:bg-zinc-100
+
+                                    md:hidden
+
+                                    dark:text-zinc-400
+                                    dark:hover:bg-zinc-800
                                 "
+                                aria-label="Toggle menu"
                             >
-                                {user.username
-                                    ?.charAt(0)
-                                    .toUpperCase()}
-                            </div>
+                                {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+                            </button>
 
-                            <span
+                            <button
+                                onClick={() => setDrawerOpen(true)}
                                 className="
-                                    text-sm
-                                    font-medium
+                                    ml-1
+
+                                    flex
+                                    items-center
+                                    gap-3
+
+                                    cursor-pointer
+
+                                    rounded-xl
+
+                                    border
+                                    border-zinc-200
+
+                                    bg-white
+
+                                    px-3
+                                    py-2
+
+                                    transition-all
+
+                                    hover:border-zinc-300
+                                    hover:shadow-sm
+
+                                    dark:border-zinc-800
+                                    dark:bg-zinc-900
+                                    dark:hover:border-zinc-700
                                 "
                             >
-                                {user.username}
-                            </span>
-                        </button>
+                                <div
+                                    className="
+                                        flex
+                                        h-8
+                                        w-8
+
+                                        items-center
+                                        justify-center
+
+                                        rounded-full
+
+                                        bg-blue-600
+
+                                        text-sm
+                                        font-semibold
+                                        text-white
+                                    "
+                                >
+                                    {user.username
+                                        ?.charAt(0)
+                                        .toUpperCase()}
+                                </div>
+
+                                <span
+                                    className="
+                                        hidden
+                                        text-sm
+                                        font-medium
+
+                                        sm:inline
+                                    "
+                                >
+                                    {user.username}
+                                </span>
+                            </button>
+                        </>
                     )}
                 </div>
 
@@ -242,6 +302,38 @@ return (
 
             
         </nav>
+
+        {user && mobileOpen && (
+            <div
+                className="
+                    border-b
+                    border-zinc-200
+
+                    bg-white
+
+                    px-4
+                    py-3
+
+                    md:hidden
+
+                    dark:border-zinc-800
+                    dark:bg-zinc-950
+                "
+            >
+                <div className="flex flex-col gap-1">
+                    {navLinks.map((link) => (
+                        <NavLink
+                            key={link.to}
+                            to={link.to}
+                            className={navLink}
+                            onClick={() => setMobileOpen(false)}
+                        >
+                            {link.label}
+                        </NavLink>
+                    ))}
+                </div>
+            </div>
+        )}
 
         {user && (
             <SettingsDrawer

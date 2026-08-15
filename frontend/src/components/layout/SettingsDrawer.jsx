@@ -217,7 +217,7 @@ function SettingsDrawer({
 
                     </Button>
 
-                    <Link to="#" onClick={onClose}>
+                    <Link to="/home" onClick={onClose}>
 
                         <Button
 

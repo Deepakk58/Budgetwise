@@ -1,14 +1,19 @@
+import { forwardRef } from "react";
+
 import { cn } from "../../lib/cn";
 
-function Select({
-    label,
-    value,
-    onChange,
-    children,
-    error,
-    className = "",
-    ...props
-}) {
+const Select = forwardRef(function Select(
+    {
+        label,
+        value,
+        onChange,
+        children,
+        error,
+        className = "",
+        ...props
+    },
+    ref
+) {
     return (
         <div className="space-y-2">
 
@@ -19,6 +24,7 @@ function Select({
             )}
 
             <select
+                ref={ref}
                 value={value}
                 onChange={onChange}
                 className={cn(
@@ -70,6 +76,6 @@ function Select({
             )}
         </div>
     );
-}
+});
 
 export default Select;

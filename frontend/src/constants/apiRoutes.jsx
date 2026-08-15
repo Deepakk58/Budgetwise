@@ -13,5 +13,18 @@ export const API_ROUTES = {
     BUDGETS: {
         ROOT: "/budgets",
         CURRENT_MONTH: "/budgets/current-month",
+        CATEGORIES: "/budgets/categories",
+    },
+    EXPENSES: {
+        ROOT: "/expenses",
+        RECENT: "/expenses/recent",
+        TOTAL: "/expenses/total",
+        CHARTS: "/expenses/charts",
+    },
+    INCOMES: {
+        ROOT: "/incomes",
+        RECENT: "/incomes/recent",
+        TOTAL: "/incomes/total",
+        MONTHLY: "/incomes/monthly",
     },
 };
