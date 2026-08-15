@@ -22,7 +22,17 @@ app.use(express.static("public"))
 app.use(cookieParser())
 
 // routes import 
+import userRouter from "./routes/user.routes.js"
+import dashboardRouter from "./routes/dashboard.routes.js";
+import expenseRouter from "./routes/expense.routes.js";
+import incomeRouter from "./routes/income.routes.js";
+import budgetRouter from "./routes/budget.routes.js";
 
+app.use("/api/v1/users", userRouter)
+app.use("/api/v1/dashboard", dashboardRouter);
+app.use("/api/v1/expenses", expenseRouter);
+app.use("/api/v1/incomes", incomeRouter);
+app.use("/api/v1/budgets", budgetRouter);
 
 // error middleware
 app.use(notFound)
