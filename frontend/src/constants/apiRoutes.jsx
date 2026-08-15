@@ -7,4 +7,11 @@ export const API_ROUTES = {
         REFRESH_TOKEN: "/users/refresh-token",
         CHANGE_PASSWORD: "/users/change-password",
     },
+    DASHBOARD: {
+        ROOT: "/dashboard",
+    },
+    BUDGETS: {
+        ROOT: "/budgets",
+        CURRENT_MONTH: "/budgets/current-month",
+    },
 };
