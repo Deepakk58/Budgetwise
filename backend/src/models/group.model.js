@@ -19,8 +19,7 @@ const groupSchema = new mongoose.Schema(
         inviteToken: {
             type: String,
             default: () => crypto.randomUUID(),
-            unique: true,
-            immutable: true
+            unique: true
         }
     },
     {

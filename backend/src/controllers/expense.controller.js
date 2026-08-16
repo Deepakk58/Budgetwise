@@ -109,7 +109,7 @@ const addExpense = asyncHandler(async (req, res) => {
 
     const parsedAmount = Number(amount);
 
-    if (Number.isNaN(parsedAmount) || parsedAmount < 0) {
+    if (!Number.isFinite(parsedAmount) || parsedAmount < 0) {
         throw new ApiError(
             400,
             "Amount must be a valid positive number"
@@ -184,7 +184,7 @@ const editExpense = asyncHandler(async (req, res) => {
 
         const parsedAmount = Number(amount);
 
-        if (Number.isNaN(parsedAmount) || parsedAmount < 0) {
+        if (!Number.isFinite(parsedAmount) || parsedAmount < 0) {
             throw new ApiError(
                 400,
                 "Amount must be a valid positive number"

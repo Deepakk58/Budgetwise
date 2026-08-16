@@ -27,12 +27,18 @@ import dashboardRouter from "./routes/dashboard.routes.js";
 import expenseRouter from "./routes/expense.routes.js";
 import incomeRouter from "./routes/income.routes.js";
 import budgetRouter from "./routes/budget.routes.js";
+import groupRouter from "./routes/group.routes.js"
+import groupExpenseRouter from "./routes/groupExpense.routes.js"
+import settlementRouter from "./routes/settlement.routes.js"
 
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/dashboard", dashboardRouter);
 app.use("/api/v1/expenses", expenseRouter);
 app.use("/api/v1/incomes", incomeRouter);
 app.use("/api/v1/budgets", budgetRouter);
+app.use("/api/v1/groups", groupRouter);
+app.use("/api/v1/group-expenses", groupExpenseRouter);
+app.use("/api/v1/settlements", settlementRouter);
 
 // error middleware
 app.use(notFound)

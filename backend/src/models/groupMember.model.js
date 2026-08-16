@@ -38,6 +38,13 @@ const groupMemberSchema = new mongoose.Schema(
     }
 );
 
+// A user can only belong to a group once. This is the authoritative guard
+// against duplicate requests arriving at the server at the same time.
+groupMemberSchema.index(
+    { group: 1, user: 1 },
+    { unique: true }
+);
+
 export const GroupMember = mongoose.model(
     "GroupMember",
     groupMemberSchema

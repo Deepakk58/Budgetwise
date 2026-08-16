@@ -30,10 +30,18 @@ const getBudgets = asyncHandler(async (req, res) => {
 
 const getCategories = asyncHandler(async (req, res) => {
 
-    const categories = await Category.find({})
-        .sort({
-            title: 1
-        });
+    const categories = await Category.find({});
+
+    categories.sort((left, right) => {
+        const leftIsOther = left.title.trim().toLowerCase() === "other";
+        const rightIsOther = right.title.trim().toLowerCase() === "other";
+
+        if (leftIsOther !== rightIsOther) {
+            return leftIsOther ? 1 : -1;
+        }
+
+        return left.title.localeCompare(right.title);
+    });
 
 
     return res
@@ -165,7 +173,7 @@ const setBudget = asyncHandler(async (req, res) => {
     const parsedAmount = Number(amount);
 
 
-    if (Number.isNaN(parsedAmount) || parsedAmount < 0) {
+    if (!Number.isFinite(parsedAmount) || parsedAmount < 0) {
         throw new ApiError(
             400,
             "Amount must be a valid positive number"
@@ -249,7 +257,7 @@ const setMultipleBudgets = asyncHandler(async (req, res) => {
         const parsedAmount = Number(amount);
 
 
-        if (Number.isNaN(parsedAmount) || parsedAmount < 0) {
+        if (!Number.isFinite(parsedAmount) || parsedAmount < 0) {
             throw new ApiError(
                 400,
                 "Invalid budget amount"
