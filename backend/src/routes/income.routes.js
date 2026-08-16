@@ -21,7 +21,6 @@ router.get("/recent", getRecentIncomes);
 router.get("/total", getTotalIncome);
 router.get("/monthly", getMonthlyIncomeData);
 router.post("/", addIncome);
-
 router.patch("/:id", editIncome);
 router.delete("/:id", deleteIncome);
 

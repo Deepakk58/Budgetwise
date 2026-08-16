@@ -20,11 +20,8 @@ router.get("/", getExpenses);
 router.get("/recent", getRecentExpenses);
 router.get("/total", getTotalExpense);
 router.get("/charts", getExpenseData);
-
 router.post("/", addExpense);
-
 router.patch("/:id", editExpense);
-
 router.delete("/:id", deleteExpense);
 
 export default router;
