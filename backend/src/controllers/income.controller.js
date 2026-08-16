@@ -26,67 +26,6 @@ const getIncomes = asyncHandler(async (req, res) => {
     );
 });
 
-const getRecentIncomes = asyncHandler(async (req, res) => {
-
-    const incomes = await Income.find({
-        user: req.user._id
-    })
-    .sort({
-        date: -1,
-        createdAt: -1
-    })
-    .limit(5);
-
-
-    return res
-    .status(200)
-    .json(
-        new ApiResponse(
-            200,
-            incomes,
-            "Recent incomes fetched successfully"
-        )
-    );
-});
-
-const getTotalIncome = asyncHandler(async (req, res) => {
-
-    const result = await Income.aggregate([
-        {
-            $match: {
-                user: req.user._id
-            }
-        },
-        {
-            $group: {
-                _id: null,
-                totalIncome: {
-                    $sum: "$amount"
-                }
-            }
-        }
-    ]);
-
-
-    const totalIncome =
-        result.length > 0
-            ? result[0].totalIncome
-            : 0;
-
-
-    return res
-    .status(200)
-    .json(
-        new ApiResponse(
-            200,
-            {
-                total_income: totalIncome
-            },
-            "Total income fetched successfully"
-        )
-    );
-});
-
 const addIncome = asyncHandler(async (req, res) => {
 
     const {
@@ -245,53 +184,9 @@ const deleteIncome = asyncHandler(async (req, res) => {
     );
 });
 
-const getMonthlyIncomeData = asyncHandler(async (req, res) => {
-
-    const monthlyData = await Income.aggregate([
-        {
-            $match: {
-                user: req.user._id
-            }
-        },
-        {
-            $group: {
-                _id: {
-                    $dateToString: {
-                        format: "%Y-%m",
-                        date: "$date"
-                    }
-                },
-                total: {
-                    $sum: "$amount"
-                }
-            }
-        },
-        {
-            $sort: {
-                _id: 1
-            }
-        }
-    ]);
-
-
-    return res
-    .status(200)
-    .json(
-        new ApiResponse(
-            200,
-            monthlyData,
-            "Monthly income data fetched successfully"
-        )
-    );
-});
-
-
 export {
     getIncomes,
-    getRecentIncomes,
-    getTotalIncome,
     addIncome,
     editIncome,
-    deleteIncome,
-    getMonthlyIncomeData
+    deleteIncome
 };

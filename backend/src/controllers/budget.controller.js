@@ -155,73 +155,6 @@ const getCurrentMonthBudgetData = asyncHandler(async (req, res) => {
     );
 });
 
-const setBudget = asyncHandler(async (req, res) => {
-
-    const { categoryId } = req.params;
-
-    const { amount } = req.body;
-
-
-    if (amount === undefined || amount === null || amount === "") {
-        throw new ApiError(
-            400,
-            "Amount is required"
-        );
-    }
-
-
-    const parsedAmount = Number(amount);
-
-
-    if (!Number.isFinite(parsedAmount) || parsedAmount < 0) {
-        throw new ApiError(
-            400,
-            "Amount must be a valid positive number"
-        );
-    }
-
-
-    const category = await Category.findById(categoryId);
-
-
-    if (!category) {
-        throw new ApiError(
-            404,
-            "Category not found"
-        );
-    }
-
-
-    const budget = await Budget.findOneAndUpdate(
-        {
-            user: req.user._id,
-            category: categoryId
-        },
-        {
-            $set: {
-                amount: parsedAmount
-            }
-        },
-        {
-            new: true,
-            upsert: true,
-            runValidators: true
-        }
-    ).populate("category", "title");
-
-
-    return res
-    .status(200)
-    .json(
-        new ApiResponse(
-            200,
-            budget,
-            "Budget updated successfully"
-        )
-    );
-});
-
-
 const setMultipleBudgets = asyncHandler(async (req, res) => {
 
     const { budgets } = req.body;
@@ -306,47 +239,9 @@ const setMultipleBudgets = asyncHandler(async (req, res) => {
     );
 });
 
-const deleteBudget = asyncHandler(async (req, res) => {
-
-    const { categoryId } = req.params;
-
-
-    const budget = await Budget.findOne({
-        user: req.user._id,
-        category: categoryId
-    });
-
-
-    if (!budget) {
-        throw new ApiError(
-            404,
-            "Budget not found"
-        );
-    }
-
-
-    await Budget.deleteOne({
-        _id: budget._id
-    });
-
-
-    return res
-    .status(200)
-    .json(
-        new ApiResponse(
-            200,
-            {},
-            "Budget deleted successfully"
-        )
-    );
-});
-
-
 export {
     getBudgets,
     getCategories,
     getCurrentMonthBudgetData,
-    setBudget,
-    setMultipleBudgets,
-    deleteBudget
+    setMultipleBudgets
 };
