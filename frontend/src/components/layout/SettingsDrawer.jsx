@@ -237,7 +237,7 @@ function SettingsDrawer({
 
                     </Link>
 
-                    <Link to="#">
+                    <Link to="/change-password">
 
                         <Button
 
