@@ -19,14 +19,18 @@ export const API_ROUTES = {
     },
     EXPENSES: {
         ROOT: "/expenses",
-        RECENT: "/expenses/recent",
-        TOTAL: "/expenses/total",
-        CHARTS: "/expenses/charts",
     },
     INCOMES: {
         ROOT: "/incomes",
-        RECENT: "/incomes/recent",
-        TOTAL: "/incomes/total",
-        MONTHLY: "/incomes/monthly",
+    },
+    GROUPS: {
+        ROOT: "/groups",
+        JOIN: "/groups/join",
+    },
+    GROUP_EXPENSES: {
+        ROOT: "/group-expenses",
+    },
+    SETTLEMENTS: {
+        ROOT: "/settlements",
     },
 };

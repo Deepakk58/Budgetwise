@@ -10,11 +10,6 @@ export const getCurrentMonthBudgetData = () =>
 export const getCategories = () =>
     api.get(API_ROUTES.BUDGETS.CATEGORIES);
 
-export const setBudget = (categoryId, amount) =>
-    api.put(`${API_ROUTES.BUDGETS.ROOT}/${categoryId}`, { amount });
-
 export const setMultipleBudgets = (budgets) =>
     api.put(API_ROUTES.BUDGETS.MULTIPLE, { budgets });
 
-export const deleteBudget = (categoryId) =>
-    api.delete(`${API_ROUTES.BUDGETS.ROOT}/${categoryId}`);

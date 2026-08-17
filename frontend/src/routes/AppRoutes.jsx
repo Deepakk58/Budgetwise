@@ -7,6 +7,11 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import Expenses from "../pages/Expenses";
 import Income from "../pages/Income";
+import Groups from "../pages/Groups";
+import GroupDetails from "../pages/GroupDetails";
+import ChangePassword from "../pages/ChangePassword";
+import JoinGroup from "../pages/JoinGroup";
+import NotFound from "../pages/NotFound";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -53,6 +58,50 @@ function AppRoutes() {
             />
 
             <Route
+                path="/groups"
+                element={
+                    <ProtectedRoute>
+                        <MainLayout>
+                            <Groups />
+                        </MainLayout>
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/groups/join/:token"
+                element={
+                    <ProtectedRoute>
+                        <MainLayout>
+                            <JoinGroup />
+                        </MainLayout>
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/groups/:groupId"
+                element={
+                    <ProtectedRoute>
+                        <MainLayout>
+                            <GroupDetails />
+                        </MainLayout>
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route 
+                path="/change-password" 
+                element={
+                    <ProtectedRoute>
+                        <MainLayout>
+                            <ChangePassword />
+                        </MainLayout>
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
                 path="/login"
                 element={
                     <MainLayout>
@@ -66,6 +115,15 @@ function AppRoutes() {
                 element={
                     <MainLayout>
                         <Register />
+                    </MainLayout>
+                }
+            />
+
+            <Route
+                path="*"
+                element={
+                    <MainLayout>
+                        <NotFound />
                     </MainLayout>
                 }
             />

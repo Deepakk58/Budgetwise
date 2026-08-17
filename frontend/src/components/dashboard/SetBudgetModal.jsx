@@ -57,7 +57,7 @@ function SetBudgetModal({
 
             const parsedAmount = Number(rawValue);
 
-            if (Number.isNaN(parsedAmount) || parsedAmount < 0) {
+            if (!Number.isFinite(parsedAmount) || parsedAmount < 0) {
                 setFormError(
                     `"${category.title}" must be a valid positive amount.`
                 );

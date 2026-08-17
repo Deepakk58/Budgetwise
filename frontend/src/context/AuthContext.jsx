@@ -20,7 +20,7 @@ function AuthProvider({ children }) {
             setUser(null);
             toast.success("Logged out successfully");
             navigate("/login");
-        } catch (error) {
+        } catch {
             toast.error("Logout failed");
         }
     };
@@ -35,7 +35,7 @@ function AuthProvider({ children }) {
 
                 setUser(response.data.data);
 
-            } catch (error) {
+            } catch {
 
                 setUser(null);
 

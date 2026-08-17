@@ -1,6 +1,6 @@
 import AppRoutes from "./routes/AppRoutes";
 import AuthLoader from "./components/common/AuthLoader";
-import useAuth from "./hooks/useAuth";
+import useAuth from "./hooks/useAuth.js";
 
 function App() {
 

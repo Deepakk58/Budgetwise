@@ -6,6 +6,7 @@ function Modal({
     title,
     children,
     onClose,
+    className = "",
 }) {
     useEffect(() => {
         if (!isOpen) return;
@@ -49,7 +50,7 @@ function Modal({
                 >
 
                     <motion.div
-                        className="
+                        className={`
                             w-full
                             max-w-lg
 
@@ -63,7 +64,9 @@ function Modal({
                             p-6
 
                             shadow-2xl
-                        "
+                            
+                            ${className}
+                        `}
                         initial={{
                             opacity: 0,
                             scale: .97,

@@ -2,14 +2,13 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
     Menu,
-    Trophy,
+    Wallet,
     X,
 } from "lucide-react";
 
-import Button from "../ui/Button";
 import SettingsDrawer from "./SettingsDrawer";
 
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth.js";
 import { cn } from "../../lib/cn";
 
 function Navbar() {
@@ -23,6 +22,7 @@ function Navbar() {
         { to: "/home", label: "Dashboard" },
         { to: "/expenses", label: "Expenses" },
         { to: "/income", label: "Income" },
+        { to: "/groups", label: "Shared Expenses" },
     ];
 
     const navLink = ({ isActive }) =>
@@ -124,7 +124,7 @@ return (
                             shadow-blue-500/25
                         "
                     >
-                        <Trophy size={18} />
+                        <Wallet size={18} />
                     </div>
 
                     <div>
