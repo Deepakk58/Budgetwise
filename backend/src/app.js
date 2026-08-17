@@ -22,6 +22,7 @@ app.use(express.static("public"))
 app.use(cookieParser())
 
 // routes import 
+import healthRouter from "./routes/health.routes.js";
 import userRouter from "./routes/user.routes.js"
 import dashboardRouter from "./routes/dashboard.routes.js";
 import expenseRouter from "./routes/expense.routes.js";
@@ -31,6 +32,7 @@ import groupRouter from "./routes/group.routes.js"
 import groupExpenseRouter from "./routes/groupExpense.routes.js"
 import settlementRouter from "./routes/settlement.routes.js"
 
+app.use("/health", healthRouter)
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/dashboard", dashboardRouter);
 app.use("/api/v1/expenses", expenseRouter);
