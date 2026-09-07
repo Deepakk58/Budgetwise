@@ -9,8 +9,6 @@ const healthCheck = asyncHandler(async (req, res) => {
             200,
             {
                 status: "OK",
-                uptime: process.uptime(),
-                timestamp: new Date(),
             },
             "Server is healthy"
         )
